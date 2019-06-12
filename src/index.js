@@ -17,7 +17,8 @@ class RBSheet extends Component {
     this.state = {
       modalVisible: false,
       animatedHeight: new Animated.Value(0),
-      pan: new Animated.ValueXY()
+      pan: new Animated.ValueXY(),
+      fadeAnim: new Animated.Value(1)
     };
 
     this.createPanResponder(props);
@@ -32,7 +33,21 @@ class RBSheet extends Component {
         toValue: height,
         duration
       }).start();
+      Animated.timing(
+        this.state.fadeAnim,
+        {
+          toValue: 1,
+          duration: 0,
+        }
+      ).start();
     } else {
+      Animated.timing(
+        this.state.fadeAnim,
+        {
+          toValue: 0,
+          duration,
+        }
+      ).start();
       Animated.timing(animatedHeight, {
         toValue: minClosingHeight,
         duration
@@ -93,7 +108,7 @@ class RBSheet extends Component {
           this.setModalVisible(false);
         }}
       >
-        <View style={[styles.wrapper, customStyles.wrapper]}>
+        <Animated.View style={[styles.wrapper, customStyles.wrapper, { opacity: this.state.fadeAnim }]}>
           <TouchableOpacity
             style={styles.mask}
             activeOpacity={1}
@@ -105,7 +120,7 @@ class RBSheet extends Component {
           >
             {children}
           </Animated.View>
-        </View>
+        </Animated.View>
       </Modal>
     );
   }
