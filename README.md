@@ -5,6 +5,7 @@
 ](//npmjs.com/package/react-native-raw-bottom-sheet)
 [![Build Status](https://travis-ci.org/nysamnang/react-native-raw-bottom-sheet.svg?branch=master)](https://travis-ci.org/nysamnang/react-native-raw-bottom-sheet)
 
+- Fade Animation on Closing Bottom Sheet
 - Super Lightweight Component
 - Smooth Animation
 - Add Your own Component To Bottom Sheet
